@@ -1,0 +1,20 @@
+<section class="movies my-5">
+  <div class="container">
+   <h2 class="mt-5">TV Shows</h2>
+   <div class="row">
+     <div *ngFor="let tv of trendyTv" class="col-lg-2 col-md-3">
+       <a [routerLink]='["/detailes","tv",tv.id]'>
+         <div class="item-card position-relative my-2 ">
+           <img [src]="imagePaseUrl+tv.poster_path"  (error)="imgError($event)" [alt]="tv.name" class="img-fluid">
+           <div class="position-absolute w-100 item-card-info">
+             <p>{{tv.title}}</p>
+             <span class="text-light release-date">release date:{{tv.first_air_date}}</span>
+           </div>
+         </div>
+       </a>
+     </div>
+   </div>
+   <nz-pagination [nzPageIndex]="pagination?.page" [nzTotal]="pagination?.total_results" [nzResponsive]="true">
+   </nz-pagination>
+  </div>
+ </section>

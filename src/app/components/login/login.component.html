@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="mt-5">
+    <h3 class="text-center py-4 text-capitalize">registeration form</h3>
+
+  <div class="w-75 mx-auto">
+    <div *ngIf="error?.length>0" class="alert alert-danger">
+      <p>{{error}}</p>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="login(loginForm)" >
+
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" formControlName="email">
+        <div class="alert alert-danger my-1" *ngIf="loginForm.get('email')?.errors!=null&&loginForm.get('email')?.touched">
+          <p *ngIf="loginForm.get('email')?.errors?.required">Email is required</p>
+          <p *ngIf="loginForm.get('email')?.errors?.email">Email is not valid</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">password</label>
+        <input type="password" class="form-control" formControlName="password">
+        <div class="alert alert-danger my-1" *ngIf="loginForm.get('password')?.errors!=null&&loginForm.get('password')?.touched">
+          <p *ngIf="loginForm.get('password')?.errors?.required">password is required</p>
+          <p *ngIf="loginForm.get('password')?.errors?.pattern">1-password must start with capital letter<br />
+            2-password length don,t be smaller than 8 charcters</p>
+        </div>
+      </div>
+      <button [disabled]="loginForm.invalid" type="submit" class="btn btn-info mt-3">login</button>
+    </form>
+  </div>
+  </div>
+</div>

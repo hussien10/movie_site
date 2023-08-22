@@ -1,0 +1,13 @@
+<div class="my-5" *ngIf="reviews?.results?.length>0">
+  <h4 class="text-capitalize">reviews</h4>
+  <div *ngFor="let review of reviews?.results" class="mt-5 border-top">
+    <h5 class="my-3">{{review.author}}</h5>
+    <nz-rate [ngModel]="review.author_details.rating/2" nzDisabled></nz-rate>
+    <p>{{review.content|slice:0:500}}...</p>
+  </div>
+  <nz-pagination [nzPageIndex]="reviews?.page" [nzTotal]="reviews?.total_results" [nzPageSize]="10" [nzResponsive]="true">
+  </nz-pagination>
+</div>
+<div *ngIf="reviews?.results?.length==0" class="my-5">
+  <p>!opps this {{title[0]}} have zero reviews</p>
+</div>

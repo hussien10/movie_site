@@ -1,0 +1,60 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@300&display=swap');
+@import "_variables.scss";
+body{
+  background-color: $bgColor;
+  font-family: 'Montserrat Alternates', sans-serif;
+  h1,h2,h3,h4,h5,h6,p,span{
+    color:$fontColor;
+  }
+  section{
+    margin-top: 64px;
+  }
+  a{
+    color: #fff!important;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+}
+.ant-pagination-item a{
+  color: #000!important;
+}
+.item-card {
+  overflow: hidden;
+
+  &:hover {
+    .item-card-info {
+      opacity: 1;
+      bottom: 0;
+    }
+  }
+}
+
+.item-card-info {
+  background-color: rgba($color:#000000, $alpha: .8);
+  text-align: left;
+  padding: 4px;
+  min-height: 35%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  opacity: 0;
+  bottom: -100%;
+  transition: all .5s ease;
+  -webkit-transition: all .5s ease;
+  -moz-transition: all .5s ease;
+  -ms-transition: all .5s ease;
+  -o-transition: all .5s ease;
+
+  p {
+    margin-bottom: 4px;
+  }
+
+  .release-date {
+    font-size: 12px;
+  }
+}
+.custom-check span:not(.ant-checkbox){
+  color: #000!important;
+}

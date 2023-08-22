@@ -1,0 +1,73 @@
+<section class="detailes py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="text-center">
+          <img [src]="  imagePaseUrl + (movieDetailes?.poster_path || movieDetailes?.profile_path)" (error)="imgError($event)" [alt]="movieDetailes?.original_title || movieDetailes?.name" class="img-fluid detail-img">
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="info ">
+          <h1 class="mb-3">{{movieDetailes?.original_name||movieDetailes?.original_title||movieDetailes?.name}}</h1>
+          <p *ngIf="cat!='person'" class="lead text-white-50">
+            {{movieDetailes?.tagline}}
+          </p>
+          <p *ngIf="cat=='tv'">
+            seasons: {{movieDetailes?.number_of_seasons}}
+          </p>
+          <p *ngIf="cat=='tv'">
+            episodes: {{movieDetailes?.number_of_episodes}}
+          </p>
+          <div class="tags my-3" *ngIf="cat!='person'">
+            <div class="badge rounded tag" *ngFor="let tag of movieDetailes?.genres">
+              {{tag.name}}
+            </div>
+          </div>
+          <p *ngIf="cat=='person'">
+            department: {{movieDetailes?.known_for_department}}
+          </p>
+          <p *ngIf="cat=='person'">
+            birth date: {{movieDetailes?.birth_date|| 'unknown'}}
+          </p>
+          <p *ngIf="cat=='person'">
+            gender: {{movieDetailes?.known_for_department==1?"female":"male"}}
+          </p>
+          <p *ngIf="cat=='person'">
+            department: {{movieDetailes?.known_for_department}}
+          </p>
+          <p *ngIf="cat!='person'">
+            vote: {{vote}} <nz-rate [ngModel]="vote" nzDisabled ></nz-rate>
+          </p>
+          <p *ngIf="cat!='person'">
+            vote count: {{movieDetailes?.vote_count}}
+          </p>
+          <p>
+            popularity: {{movieDetailes?.popularity}}
+          </p>
+          <p *ngIf="cat!='person'">
+            release date: {{movieDetailes?.release_date || movieDetailes?.first_air_date}}
+          </p>
+          <p class="text-muted" >
+            {{(movieDetailes?.overview|slice:0:500)||(movieDetailes?.biography|slice:0:500)}}
+          </p>
+        </div>
+      </div>
+      <div class="col-md-8" *ngIf="cat!='person'">
+        <div class="reviews">
+          <app-reviewes [title]='[cat,id]'></app-reviewes>
+        </div>
+      </div>
+      <div class="col-md-4" *ngIf="cat!='person'">
+          <div class="cast">
+            <app-cast [title]='[cat,id]'></app-cast>
+          </div>
+      </div>
+      <div class="col-md-12" *ngIf="cat=='person'">
+        <app-credits [id]="id" [name]="movieDetailes?.name"></app-credits>
+      </div>
+      <div class="col-md-12" *ngIf="cat!='person'">
+        <app-simillar [id]="id" [cat]="cat" [name]="movieDetailes?.name"></app-simillar>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg fixed-top bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="home"><img src="assets/images/logo-dark.webp" /></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="isLogin" routerLink="/home">home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="isLogin" routerLink="/movies">movies</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="isLogin" routerLink="/tv">Tv show</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="isLogin" routerLink="/people">people</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="isLogin" routerLink="/about">about</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="isLogin" routerLink="/network">network</a>
+        </li>
+
+      </ul>
+      <form class="d-flex ms-auto position-relative">
+        <input #searchinput class="form-control" (keyup)="search($event)" type="search" placeholder="Search" aria-label="Search">
+        <ul class="unstyled-list searchList position-absolute top-100 start-0" *ngIf="searchinput.value.length>0">
+          <ng-container *ngFor="let result of searchResult">
+            <li *ngIf="result.original_title!=='' || result.name!==''"  class="d-flex justify-content-start align-items-center bg-dark searchRes my-1">
+              <a class="search-item" [routerLink]='["/detailes",result.media_type,result.id]'>
+                <div class="search-img">
+                  <img [src]="result.media_type!='person'?imagePaseUrl+result.poster_path:imagePaseUrl+result.profile_path" (error)="imgError($event)" [attr.alt]="result.original_title" class="poster"/>
+                </div>
+              <h4 class="ms-3">{{result.media_type!='person'?result.original_title:result.name }}</h4>
+              </a>
+            </li>
+          </ng-container>
+        </ul>
+      </form>
+      <div class="d-flex justify-content-center px-3 align-items-center text-white">
+        <a href="#" class="px-2"><i class="fab fa-facebook"></i></a>
+        <a href="#" class="px-2"><i class="fab fa-spotify"></i></a>
+        <a href="#" class="px-2"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="px-2"><i class="fab fa-youtube"></i></a>
+      </div>
+      <ul class="navbar-nav  mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="!isLogin" routerLink="login">login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="!isLogin" routerLink="registeration">sign up</a>
+        </li>
+        <li class="nav-item" >
+          <a class="nav-link" *ngIf="isLogin" (click)="logout()">logout</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="isLogin" routerLink="/user">Profile</a>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

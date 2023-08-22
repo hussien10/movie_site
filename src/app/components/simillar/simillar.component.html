@@ -1,0 +1,41 @@
+<div class="my-5">
+  <h4 class="text-capitalize ">we recomanded this because you watched {{name}}</h4>
+  <div class="mt-3">
+    <!-- <swiper [slidesPerView]="1" [loop]="true" [loopedSlides]="10" [spaceBetween]="30" [autoplay]="{
+      delay: 2000,
+      disableOnInteraction: false
+    }" [breakpoints]="{
+      '576':{
+        slidesPerView: 2,
+        spaceBetween: 50
+      },
+      '768': {
+        slidesPerView: 4,
+        spaceBetween: 50
+      },
+      '1024': {
+        slidesPerView: 6,
+        spaceBetween: 40
+      },
+      '1440': {
+        slidesPerView: 8,
+        spaceBetween: 30
+      }
+    }"
+
+    class=" mySwiper">
+      <ng-template swiperSlide *ngFor="let movie of simillar">
+        <a [routerLink]='["/detailes",cat,movie.id]'>
+          <div class="item-card position-relative my-2 ">
+            <img [src]="imagePaseUrl+movie.poster_path" (error)="imgError($event)" [alt]="cat=='movie'?movie.title:movie.name" class="img-fluid">
+            <div class="position-absolute w-100 item-card-info">
+              <p>{{cat=='movie'?movie.title:movie.name}}</p>
+              <span class="text-light release-date">realese
+                date:{{cat=='movie'?movie.release_date:movie.first_air_date}}</span>
+            </div>
+          </div>
+        </a>
+      </ng-template>
+    </swiper> -->
+  </div>
+</div>
