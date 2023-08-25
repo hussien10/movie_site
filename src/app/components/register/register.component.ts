@@ -19,17 +19,14 @@ export class RegisterComponent implements OnInit {
     password:new UntypedFormControl(null,[Validators.required,Validators.minLength(8),Validators.pattern("^[A-Z][a-z,0-9]{7,10}$")]),
   })
   regist(registerationForm:UntypedFormGroup){
-    this._AuthService.signup(registerationForm.value).subscribe(result=>{
-      if(result.message=="success"){
+    this._AuthService.signup({"email":registerationForm.value.email,"password":registerationForm.value.password}).then(result=>{
         this._Router.navigate(["/login"])
-        console.log(result)
-      }
-      else{
-        this.error=result.errors.email.message
-      }
-    },
-    error=>{
-      console.log(error)
+
+      console.log(registerationForm.value)
+
+    }).
+    catch(err=>{
+      alert(err.message)
     })
   }
   ngOnInit(): void {

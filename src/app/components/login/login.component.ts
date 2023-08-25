@@ -15,15 +15,13 @@ export class LoginComponent implements OnInit {
     password:new UntypedFormControl(null,[Validators.required,Validators.minLength(8),Validators.pattern("^[A-Z][a-z,0-9]{7,10}$")]),
   })
   login(formData:UntypedFormGroup){
-    this._AuthService.signin(formData.value).subscribe(response=>{
-      if(response.message=="success"){
-        localStorage.setItem("userToken",response.token)
+    this._AuthService.signin({"email":formData.value.email,"password":formData.value.password}).then(response=>{
+        localStorage.setItem("userToken",String(response.user?.refreshToken))
         this._AuthService.safeToken()
         this._Router.navigate(["/home"])
-      }
-      else{
-        this.error=response.message
-      }
+
+    }).catch(err=>{
+      alert(err.message)
     })
   }
   constructor(private _AuthService:AuthService,private _Router:Router) { }

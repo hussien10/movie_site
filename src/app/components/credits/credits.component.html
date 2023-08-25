@@ -48,6 +48,19 @@
           </a>
         </ng-template>
       </swiper> -->
+      <nz-carousel nzAutoPlay [nzEffect]="effect" [nzLoop]="false" [nzEnableSwipe]="false">
+        <div nz-carousel-content *ngFor="let credit of tvCredits?.cast">
+          <a [routerLink]='["/detailes","tv",credit.id]'>
+            <div class="item-card position-relative my-2 " >
+              <img [src]="imagePaseUrl+credit.poster_path" [alt]="credit.name" class="img-fluid">
+              <div class="position-absolute w-100 item-card-info">
+                <p>{{credit.name}}</p>
+                <p class="text-light release-date">charcter name: {{credit.charcter||"unknown"}}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </nz-carousel>
       </div>
     </div>
   </div>

@@ -11,7 +11,7 @@ import { Component, Input, OnInit, ViewEncapsulation, OnDestroy } from '@angular
 
 })
 export class CreditsComponent implements OnInit ,OnDestroy {
-  @Input ()id!:number
+  @Input ()id!:any
   @Input ()name!:string
   movieCredits!:any
   tvCredits!:any
@@ -19,6 +19,8 @@ export class CreditsComponent implements OnInit ,OnDestroy {
   tvsub!:Subscription
   imagePaseUrl:string=`https://image.tmdb.org/t/p/w500`
   noPoster='../../../assets/images/no-poster-available.jpg'
+  array = [1, 2, 3, 4];
+  effect = 'scrollx';
   constructor(private _MovieService:MoviesService) { }
   imgError(e:any){
     this._MovieService.imgError(e)

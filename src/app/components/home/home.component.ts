@@ -5,7 +5,7 @@ import { Component, OnInit,Renderer2,ViewEncapsulation } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 import { Wishlist } from 'src/app/interfaces/wishlist';
-import jwtDecode from 'jwt-decode';
+// import jwtDecode from 'jwt-decode';
 
 
 
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
   wishSub!:Subscription
   data!:Wishlist
   token:any=localStorage.getItem("userToken")
-  userToken:any=jwtDecode(this.token)
+  userToken:any=this.token
   constructor(private _moviesService:MoviesService,private _wishlistService:WishlistService,private _render:Renderer2) {
 
   }

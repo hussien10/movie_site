@@ -16,6 +16,8 @@ export class CastComponent implements OnInit {
   imgError(e:any){
     this._MoviesServices.imgError(e)
   }
+  array = [1, 2, 3, 4];
+  effect = 'scrollx';
   ngOnInit(): void {
     this._MoviesServices.getCast(this.title[0],this.title[1]).subscribe(response=>{
       this.casts=response

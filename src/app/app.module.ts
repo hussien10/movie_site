@@ -24,8 +24,10 @@ import { SimillarComponent } from './components/simillar/simillar.component';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { UserComponent } from './components/user/user.component';
-
-
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { environment } from 'src/environments/environment';
+import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,10 @@ import { UserComponent } from './components/user/user.component';
     NzRateModule,
     FormsModule,
     NzPaginationModule,
-    NzIconModule
+    NzIconModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireAuthModule,
+    NzCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

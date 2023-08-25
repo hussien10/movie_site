@@ -10,8 +10,8 @@ import { Component, OnInit,Input, ViewEncapsulation } from '@angular/core';
 
 })
 export class SimillarComponent implements OnInit {
-  @Input() id!:number
-  @Input() cat!:string
+  @Input() id!:any
+  @Input() cat!:any
   @Input() name!:string
   simillar!:Array<any>
   simSub!:Subscription

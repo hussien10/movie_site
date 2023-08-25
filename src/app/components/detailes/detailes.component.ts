@@ -9,20 +9,23 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./detailes.component.scss']
 })
 export class DetailesComponent implements OnInit,OnDestroy {
+   constructor(private _moviesService:MoviesService,private _ActivatedRoute:ActivatedRoute,private _router:Router) {
+    this._router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
   imagePaseUrl:string=`https://image.tmdb.org/t/p/w500`
   movieDetailes:any
   movieSub!:Subscription
   vote!:number;
-  cat=this._ActivatedRoute.snapshot.params.cat
-  id=this._ActivatedRoute.snapshot.params.id
+  cat:any
+  id:any
   name!:any
-  constructor(private _moviesService:MoviesService,private _ActivatedRoute:ActivatedRoute,private _router:Router) {
-    this._router.routeReuseStrategy.shouldReuseRoute = () => false;
-  }
+
   imgError(e:any){
     this._moviesService.imgError(e)
   }
   ngOnInit(): void {
+    this.cat=this._ActivatedRoute?.snapshot.params.cat
+  this.id=this._ActivatedRoute?.snapshot.params.id
     this.movieSub=this._moviesService.getDetailes(this.cat,this.id).subscribe(response=>{
       this.movieDetailes=response
       this.vote=Math.floor(this.movieDetailes.vote_average/2)
