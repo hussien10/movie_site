@@ -1,8 +1,7 @@
 import { WishlistService } from './../../services/wishlist.service';
 import { MoviesService } from './../../services/movies.service';
 import { Component, OnInit,Renderer2,ViewEncapsulation } from '@angular/core';
-
-
+import { OwlOptions } from 'ngx-owl-carousel-o';
 import { Subscription } from 'rxjs';
 import { Wishlist } from 'src/app/interfaces/wishlist';
 // import jwtDecode from 'jwt-decode';
@@ -29,6 +28,32 @@ export class HomeComponent implements OnInit {
   data!:Wishlist
   token:any=localStorage.getItem("userToken")
   userToken:any=this.token
+  customOptions: OwlOptions = {
+    loop: true,
+    mouseDrag: false,
+    touchDrag: false,
+    pullDrag: false,
+    dots: true,
+    navSpeed: 700,
+    autoplay:true,
+    autoplaySpeed:300,
+    navText: ['prev', 'next'],
+    responsive: {
+      0: {
+        items: 1
+      },
+      400: {
+        items: 2
+      },
+      740: {
+        items: 4
+      },
+      940: {
+        items: 6
+      }
+    },
+    nav: true
+  }
   constructor(private _moviesService:MoviesService,private _wishlistService:WishlistService,private _render:Renderer2) {
 
   }

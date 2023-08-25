@@ -28,7 +28,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
-
+import { CarouselModule } from 'ngx-owl-carousel-o';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +62,8 @@ import { NzCarouselModule } from 'ng-zorro-antd/carousel';
     NzIconModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    NzCarouselModule
+    NzCarouselModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]
